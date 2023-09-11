@@ -1,43 +1,30 @@
 <script setup lang="ts">
 
 import { RouterLink, RouterView } from 'vue-router'
+import useRouter from '../src/router/index'
 
-const items = [
-  { text: 'Real-Time', icon: 'mdi-clock' },
-  { text: 'Audience', icon: 'mdi-account' },
-  { text: 'Conversions', icon: 'mdi-flag' },
-];
+function toLogin() { 
+  useRouter.push('/login');
+}
 
 </script>
 
 <template>
-  <v-app>
-    <!-- Vuetify navigation drawer -->
-    <v-navigation-drawer app>
-      <!-- Replace this with your custom navigation drawer content -->
-      <v-card class="mx-auto" max-width="300">
-        <v-list density="compact">
-          <v-list-item v-for="(item, i) in items" :key="i" :value="item" color="primary">
-            <template v-slot:prepend>
-              <v-icon :icon="item.icon"></v-icon>
-            </template>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-card>
-    </v-navigation-drawer>
-
-    <!-- Vuetify app bar -->
+  <v-layout class="rounded rounded-md">
     <v-app-bar app color="blue">
       <!-- Replace this with your custom app bar content -->
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>My Vuetify App</v-toolbar-title>
+      <v-toolbar-title>My Vue Project</v-toolbar-title>
+      <v-toolbar-items class="mr-4">
+        <v-btn>選單1</v-btn>
+        <v-btn>選單2</v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items class="ml-4">
+        <v-btn @click="toLogin()">登入</v-btn>
+      </v-toolbar-items>
     </v-app-bar>
 
-    <!-- Main content -->
-    <v-main>
-      <v-container>
-        <!-- Replace this with your main content -->
+    <v-main class="d-flex align-center justify-center w-100">
+      <v-container style="width: 1200px;">
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -47,7 +34,7 @@ const items = [
       <!-- Replace this with your custom footer content -->
       <span>&copy;2023 My Vuetify App</span>
     </v-footer>
-  </v-app>
+  </v-layout>
 </template>
 
 <style scoped></style>
