@@ -1,17 +1,9 @@
 <script setup lang="ts">
 
-import { api_login } from '../hook/Base';
+import { api_login , toSign , showAlert , showAlertTimeOut } from '../hook/Base';
 import UserDto from '@/class/UserDto'
 import { reactive, ref } from 'vue';
 import { useMainStore } from '@/stores/counter'
-import useRouter from '../router/index'
-
-function toHome() {
-    useRouter.push('/');
-}
-
-let showDialog = ref(false);
-let showDialogMsg = ref("");
 
 const userData = reactive({
     username: '',
@@ -21,21 +13,21 @@ const userData = reactive({
 const piniaStore = useMainStore();
 
 function login() {
-    const userDto = new UserDto(userData.username, userData.password);
+    const userDto = new UserDto(userData.username, userData.password, '');
     api_login(userDto).then(success => {
         //login success and set token 
         let token = success.data.token;
-        console.log('MyToken is---' + token);
-        piniaStore.setToken(token);
-        showDialog.value = true;
-        showDialogMsg.value = "登入成功";
-        setTimeout(() => {
-            toHome();
-        }, 500);
+        piniaStore.loginSuc(token);
+        showAlertTimeOut('登入成功');
     }).catch(err => {
         //login fail 
-        showDialog.value = true;
-        showDialogMsg.value = "登入失敗，帳號或密碼錯誤";
+        console.log(err.response.data);
+        let alertObj = {
+            icon: 'error',
+            title: '登入失敗',
+            text: '帳號或密碼錯誤'
+        }
+        showAlert(alertObj);
     })
 }
 
@@ -47,16 +39,10 @@ function login() {
             <v-form fast-fail>
                 <v-text-field v-model="userData.username" label="User Name"></v-text-field>
                 <v-text-field v-model="userData.password" label="password"></v-text-field>
-                <v-btn @click="login()" type="button" color="blue" block class="mt-2">Sign in</v-btn>
+                <v-btn @click="toSign()" type="button" color="green" block class="mt-2">註冊</v-btn>
+                <v-btn @click="login()" type="button" color="blue" block class="mt-2">登入</v-btn>
             </v-form>
         </v-sheet>
-        <v-dialog v-model="showDialog" width="300px">
-            <v-card>
-                <v-card-text>
-                    {{ showDialogMsg }}
-                </v-card-text>
-            </v-card>
-        </v-dialog>
     </div>
 </template>
 

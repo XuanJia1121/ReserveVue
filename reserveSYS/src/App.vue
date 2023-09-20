@@ -1,10 +1,20 @@
 <script setup lang="ts">
 
-import { RouterLink, RouterView } from 'vue-router'
-import useRouter from '../src/router/index'
+import { RouterView } from 'vue-router'
+import { useMainStore } from '@/stores/counter'
+import { showAlert , toLogin , toHome } from '@/hook/Base'
 
-function toLogin() { 
-  useRouter.push('/login');
+const piniaStore = useMainStore();
+
+function logOut() {
+  piniaStore.logOut();
+  let alertObj = {
+    icon: 'info',
+    title: '登出',
+    text: '系統以登出'
+  }
+  showAlert(alertObj)
+  toLogin();
 }
 
 </script>
@@ -14,12 +24,16 @@ function toLogin() {
     <v-app-bar app color="blue">
       <!-- Replace this with your custom app bar content -->
       <v-toolbar-title>My Vue Project</v-toolbar-title>
-      <v-toolbar-items class="mr-4">
+      <v-toolbar-items v-if="piniaStore.showBarBtn" class="mr-4">
         <v-btn>選單1</v-btn>
         <v-btn>選單2</v-btn>
       </v-toolbar-items>
-      <v-toolbar-items class="ml-4">
-        <v-btn @click="toLogin()">登入</v-btn>
+      <v-toolbar-items v-if="piniaStore.showBarBtn" class="ml-4">
+        <v-btn v-if="!piniaStore.isLogin" @click="toLogin()">登入</v-btn>
+        <v-btn v-else @click="logOut()">登出</v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items v-else class="ml-4">
+        <v-btn @click="toHome()">首頁</v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
