@@ -3,6 +3,7 @@
 import { RouterView } from 'vue-router'
 import { useMainStore } from '@/stores/counter'
 import { showAlert , toLogin , toHome } from '@/hook/Base'
+import Cookies from 'js-cookie';
 
 const piniaStore = useMainStore();
 
@@ -13,6 +14,8 @@ function logOut() {
     title: '登出',
     text: '系統以登出'
   }
+  Cookies.remove('jwtToken');
+  Cookies.remove('googleName');
   showAlert(alertObj)
   toLogin();
 }

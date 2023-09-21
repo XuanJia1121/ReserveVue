@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { api_login , toSign , showAlert , showAlertTimeOut } from '../hook/Base';
+import { api_login, toSign, showAlert, showAlertTimeOut } from '../hook/Base';
 import UserDto from '@/class/UserDto'
 import { reactive, ref } from 'vue';
 import { useMainStore } from '@/stores/counter'
@@ -31,6 +31,13 @@ function login() {
     })
 }
 
+
+function startGoogleOAuth() {
+    // Make a request to your back-end endpoint for Google OAuth
+    window.location.href = 'http://localhost:8081/oauth2/authorization/google'
+}
+
+
 </script>
 
 <template>
@@ -41,6 +48,7 @@ function login() {
                 <v-text-field v-model="userData.password" label="password"></v-text-field>
                 <v-btn @click="toSign()" type="button" color="green" block class="mt-2">註冊</v-btn>
                 <v-btn @click="login()" type="button" color="blue" block class="mt-2">登入</v-btn>
+                <v-btn @click="startGoogleOAuth()" type="button" color="red" block class="mt-2">Google</v-btn>
             </v-form>
         </v-sheet>
     </div>

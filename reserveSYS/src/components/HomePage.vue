@@ -1,7 +1,19 @@
 <script setup lang="ts">
 
-import { RouterLink, RouterView } from 'vue-router'
+import { onMounted } from 'vue';
+import Cookies from 'js-cookie';
+import { toHome } from '@/hook/Base'
+import { useMainStore } from '@/stores/counter'
 
+const piniaStore = useMainStore();
+
+onMounted(()=> {
+    const token = Cookies.get('jwtToken');
+    if (token) {
+        piniaStore.loginSuc(token);
+        alert('hello' + Cookies.get('googleName'));
+    }
+})
 
 </script>
 

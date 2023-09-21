@@ -4,12 +4,17 @@ import Swal from "sweetalert2"; //引入SweetAlert
 import useRouter from '../router/index'
 import { useMainStore } from '@/stores/counter'
 
+
 export function api_login(userData: UserDto) {
     return api().post('/base/login', userData);
 }
 
 export function api_sign(userData: UserDto) {
     return api().post('/base/sign', userData);
+}
+
+export function api_oauth_google() {
+    return api().post('/base/sign');
 }
 
 export function showAlert(msg: object) {
