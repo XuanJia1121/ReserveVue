@@ -5,23 +5,21 @@ import  UserDto  from '../class/UserDto'
 export const useMainStore = defineStore({
   id: 'main', // Fixed the typo 'mian' to 'main'
   state: () => ({
-    user: UserDto,
+    username: '',
+    token: '',
     isLogin: false,
     showBarBtn: true
   }),
   getters: {
-    getUser(): UserDto {
-      return this.user;
-    }
+    
   },
   actions: {
-    setUser(user: UserDto) {
-      this.user = user;
-    },
     setToken(token: string) {
       sessionStorage.setItem('token', token);
     },
-    loginSuc(token: string){
+    loginSuc(token: string, username: string){
+      this.username = username;
+      this.token = token;
       this.setToken(token);
       this.isLogin = true;
       console.log('set token' + token);

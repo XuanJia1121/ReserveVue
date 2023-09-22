@@ -10,8 +10,8 @@ const piniaStore = useMainStore();
 onMounted(()=> {
     const token = Cookies.get('jwtToken');
     if (token) {
-        piniaStore.loginSuc(token);
-        alert('hello' + Cookies.get('googleName'));
+        const username = Cookies.get('googleName');
+        piniaStore.loginSuc(token,username);
     }
 })
 

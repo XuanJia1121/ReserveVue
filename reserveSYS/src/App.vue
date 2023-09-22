@@ -31,6 +31,9 @@ function logOut() {
         <v-btn>選單1</v-btn>
         <v-btn>選單2</v-btn>
       </v-toolbar-items>
+      <v-toolbar-items v-if="piniaStore.isLogin">
+        <v-btn rounded color="black">{{piniaStore.username}}，您好</v-btn>
+      </v-toolbar-items>
       <v-toolbar-items v-if="piniaStore.showBarBtn" class="ml-4">
         <v-btn v-if="!piniaStore.isLogin" @click="toLogin()">登入</v-btn>
         <v-btn v-else @click="logOut()">登出</v-btn>

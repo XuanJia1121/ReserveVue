@@ -5,11 +5,11 @@ export default class UserDto {
     private email: string;
     private jwt_token: string;
 
-    constructor(username: string, password: string, email: string) {
+    constructor(username: string, password: string, email: string, token: string) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.jwt_token = '';
+        this.jwt_token = token;
     }
 
     getUsername(): string {

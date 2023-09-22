@@ -13,11 +13,12 @@ const userData = reactive({
 const piniaStore = useMainStore();
 
 function login() {
-    const userDto = new UserDto(userData.username, userData.password, '');
+    const userDto = new UserDto(userData.username, userData.password, '', '');
     api_login(userDto).then(success => {
         //login success and set token 
         let token = success.data.token;
-        piniaStore.loginSuc(token);
+        let name =  success.data.username;
+        piniaStore.loginSuc(token,name);
         showAlertTimeOut('登入成功');
     }).catch(err => {
         //login fail 

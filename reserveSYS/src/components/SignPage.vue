@@ -13,7 +13,7 @@ let input_sign = reactive({
 });
 
 function sign_up(){
-    const userDto = new UserDto(input_sign.username, input_sign.password, input_sign.email);
+    const userDto = new UserDto(input_sign.username, input_sign.password, input_sign.email,'');
     api_sign(userDto).then(success => {
         let alertObj = {
             icon: 'success',
