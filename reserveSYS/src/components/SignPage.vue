@@ -13,6 +13,15 @@ let input_sign = reactive({
 });
 
 function sign_up(){
+    if (input_sign.username === "" || input_sign.password === ""  || input_sign.email === "") {
+        let alertObj = {
+            icon: 'warning',
+            title: '註冊',
+            text: '欄位不得為空'
+        }
+        showAlert(alertObj);
+        return;
+    }
     const userDto = new UserDto(input_sign.username, input_sign.password, input_sign.email,'');
     api_sign(userDto).then(success => {
         let alertObj = {

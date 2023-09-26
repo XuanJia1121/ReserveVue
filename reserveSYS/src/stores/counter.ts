@@ -1,6 +1,5 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import  UserDto  from '../class/UserDto'
+import Product from '@/class/Product';
 
 export const useMainStore = defineStore({
   id: 'main', // Fixed the typo 'mian' to 'main'
@@ -8,7 +7,8 @@ export const useMainStore = defineStore({
     username: '',
     token: '',
     isLogin: false,
-    showBarBtn: true
+    showBarBtn: true,
+    products: []
   }),
   getters: {
     
@@ -28,6 +28,9 @@ export const useMainStore = defineStore({
       sessionStorage.removeItem('token');
       this.isLogin = false;
       console.log('remove token');
+    },
+    setProducts(products: []) {
+      this.products = products;
     }
   },
 });

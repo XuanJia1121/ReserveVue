@@ -17,6 +17,10 @@ export function api_oauth_google() {
     return api().post('/base/sign');
 }
 
+export function api_products() {
+    return api().post('/product/all');
+}
+
 export function showAlert(msg: object) {
     Swal.fire(msg);
 }

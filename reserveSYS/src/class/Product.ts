@@ -1,13 +1,15 @@
-export default class Protal {
+export default class Product {
 
     private name: string;
     private price: BigInt;
-    private desc: string;
+    private description: string;
+    private cnt: BigInt;
 
-    constructor(name: string, price: BigInt, desc: string) {
+    constructor(name: string, price: BigInt, desc: string, cnt: BigInt) {
         this.name = name;
         this.price = price;
-        this.desc = desc;
+        this.description = desc;
+        this.cnt = cnt;
     }
 
     getName(): string{
@@ -15,11 +17,15 @@ export default class Protal {
     }
 
     getDesc(): string{
-        return this.desc;
+        return this.description;
     }
 
     getPrice(): BigInt{
         return this.price;
+    }
+
+    getCnt(): BigInt {
+        return this.cnt;
     }
 
 }

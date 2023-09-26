@@ -28,8 +28,7 @@ function logOut() {
       <!-- Replace this with your custom app bar content -->
       <v-toolbar-title>My Vue Project</v-toolbar-title>
       <v-toolbar-items v-if="piniaStore.showBarBtn" class="mr-4">
-        <v-btn>選單1</v-btn>
-        <v-btn>選單2</v-btn>
+        <v-btn>購物車</v-btn>
       </v-toolbar-items>
       <v-toolbar-items v-if="piniaStore.isLogin">
         <v-btn rounded color="black">{{piniaStore.username}}，您好</v-btn>
