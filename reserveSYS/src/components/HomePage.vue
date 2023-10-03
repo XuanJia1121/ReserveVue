@@ -5,13 +5,15 @@ import Cookies from 'js-cookie';
 import { useMainStore } from '@/stores/counter'
 import { api_products } from '@/hook/Base';
 
-const piniaStore = useMainStore();
+const piniaStore: any = useMainStore();
 
 onMounted(() => {
     const token = Cookies.get('jwtToken');
     if (token) {
         const username = Cookies.get('googleName');
-        piniaStore.loginSuc(token, username);
+        if (username) {
+            piniaStore.loginSuc(token, username);
+        }
     }
     //init product
     api_products().then(res => {

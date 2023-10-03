@@ -34,9 +34,9 @@ export function showAlertTimeOut(msg: string) {
         timerProgressBar: true,
         didOpen: () => {
             Swal.showLoading()
-            const b = Swal.getHtmlContainer().querySelector('b')
+            const b: any = Swal.getHtmlContainer()!.querySelector('b')
             timerInterval = setInterval(() => {
-                b.textContent = Swal.getTimerLeft()
+                b!.textContent = Swal.getTimerLeft()
             }, 100)
         },
         willClose: () => {
